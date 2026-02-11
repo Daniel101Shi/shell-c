@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
   fgets(COMMAND, sizeof(COMMAND), stdin);
   COMMAND[strcspn(COMMAND, '\n')] = '\0';
 
-  printf("%s: command not found", COMMAND);
+  printf("%s: command not found\n", COMMAND);
   
   return 0;
 }
