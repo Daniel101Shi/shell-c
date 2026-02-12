@@ -5,7 +5,7 @@
 char COMMAND[1024];
 
 void echo(char* word){
-  printf(word);
+  printf("%s\n", word);
 }
 
 
