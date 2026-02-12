@@ -6,10 +6,8 @@ char COMMAND[1024];
 
 
 int main(int argc, char *argv[]) {
-  // Flush after every printf
+  // flush after every printf
   setbuf(stdout, NULL);
-
-  // TODO: Uncomment the code below to pass the first stage
 
 
   while(true){
@@ -17,13 +15,25 @@ int main(int argc, char *argv[]) {
     fgets(COMMAND, sizeof(COMMAND), stdin);
     COMMAND[strcspn(COMMAND, "\n'")] = '\0';
     
+    char* firstWord = strtok(COMMAND, " ");
+    if(!strcmp(firstWord, "echo")){
+      echo(strtok(NULL, "\0"));
+    }
+
+
+
     if(!strcmp(COMMAND, "exit")){
       break;
     }
     printf("%s: command not found\n", COMMAND);
     
+
   }
 
   
   return 0;
+}
+
+void echo(char* word){
+  printf(word);
 }
