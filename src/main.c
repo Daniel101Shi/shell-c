@@ -20,16 +20,14 @@ int main(int argc, char *argv[]) {
     COMMAND[strcspn(COMMAND, "\n'")] = '\0';
     
     char* firstWord = strtok(COMMAND, " ");
+
     if(!strcmp(firstWord, "echo")){
-      echo(strtok(NULL, "\0"));
-    }
-
-
-
-    if(!strcmp(COMMAND, "exit")){
+      echo(strtok(NULL, ""));
+    } else if(!strcmp(firstWord, "exit")){
       break;
-    }
+    } else(
     printf("%s: command not found\n", COMMAND);
+    )
     
 
   }
