@@ -10,24 +10,28 @@ void echo(char* word){
 }
 
 void type(char* word){
-
+  int found = 0;
   if(!strcmp(word, "echo") || !strcmp(word, "type") || !strcmp(word, "exit")){
     printf("%s is a shell builtin\n", word);
-  } else if(access()){
-
   } else{
-    char* path_env = strdup(getenv("PATH"));
+    char combined_path[1024];
+    if(getenv("PATH") != NULL){
+      char* path_env = strdup(getenv("PATH"));
+      char *dir = strtok(path_env, ":");
 
-    char* dir = strtok(path_env, ":");
-
-    while(dir!=NULL){
-    char* combined_path = strcat(dir, "/");
-    char* combined_path = strcat(combined_path, word);
-    if (access(combined_path, X_OK) == 0){
-      printf("%s is %s", word, combined_path);
-    }else{
-      printf("%s: not found\n", word);
+      while(dir!=NULL){
+      snprintf(combined_path, sizeof(combined_path), "%s/%s", dir, word);
+      if (access(combined_path, X_OK) == 0){
+        found = 1;
+        printf("%s is %s\n", word, combined_path);
+        break;
+      }
+      dir = strtok(NULL, ":");
     }
+    free(path_env);
+  }
+  if(!found){
+    printf("%s: not found\n", word);
   }
     
   }
