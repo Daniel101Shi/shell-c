@@ -8,6 +8,13 @@ void echo(char* word){
   printf("%s\n", word);
 }
 
+void type(char* word){
+  if(!strcmp(word, "exit") || !strcmp(firstWord, "exit") || !strcmp(firstWord, "exit")){
+    printf("%s is a shell builtin", word);
+  } else{
+    printf("%s: not found\n", word);
+  }
+}
 
 int main(int argc, char *argv[]) {
   // flush after every printf
@@ -23,8 +30,13 @@ int main(int argc, char *argv[]) {
 
     if(!strcmp(firstWord, "echo")){
       echo(strtok(NULL, ""));
+
+    }else if(!strcmp(firstWord, "type")){
+      type(strtok(NULL, ""));
+
     } else if(!strcmp(firstWord, "exit")){
       break;
+
     } else {
     printf("%s: command not found\n", COMMAND);
     }
