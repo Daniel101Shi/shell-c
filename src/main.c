@@ -25,14 +25,12 @@ int main(int argc, char *argv[]) {
       echo(strtok(NULL, ""));
     } else if(!strcmp(firstWord, "exit")){
       break;
-    } else(
+    } else {
     printf("%s: command not found\n", COMMAND);
-    )
+    }
     
 
   }
-
-  
   return 0;
 }
 
