@@ -4,6 +4,10 @@
 
 char COMMAND[1024];
 
+void echo(char* word){
+  printf(word);
+}
+
 
 int main(int argc, char *argv[]) {
   // flush after every printf
@@ -34,6 +38,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-void echo(char* word){
-  printf(word);
-}
+
