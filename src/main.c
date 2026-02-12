@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 
 char COMMAND[1024];
@@ -9,12 +10,29 @@ void echo(char* word){
 }
 
 void type(char* word){
+
   if(!strcmp(word, "echo") || !strcmp(word, "type") || !strcmp(word, "exit")){
     printf("%s is a shell builtin\n", word);
+  } else if(access()){
+
   } else{
-    printf("%s: not found\n", word);
+    char* path_env = strdup(getenv("PATH"));
+
+    char* dir = strtok(path_env, ":");
+
+    while(dir!=NULL){
+    char* combined_path = strcat(dir, "/");
+    char* combined_path = strcat(combined_path, word);
+    if (access(combined_path, X_OK) == 0){
+      printf("%s is %s", word, combined_path);
+    }else{
+      printf("%s: not found\n", word);
+    }
+  }
+    
   }
 }
+
 
 int main(int argc, char *argv[]) {
   // flush after every printf
