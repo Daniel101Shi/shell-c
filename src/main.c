@@ -9,7 +9,7 @@ void echo(char* word){
 }
 
 void type(char* word){
-  if(!strcmp(word, "exit") || !strcmp(firstWord, "exit") || !strcmp(firstWord, "exit")){
+  if(!strcmp(word, "echo") || !strcmp(word, "type") || !strcmp(word, "exit")){
     printf("%s is a shell builtin", word);
   } else{
     printf("%s: not found\n", word);
